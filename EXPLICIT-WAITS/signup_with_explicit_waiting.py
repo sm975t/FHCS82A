@@ -73,15 +73,9 @@ class Signup(unittest.TestCase):
         except TimeoutException: self.verificationErrors.append("Timed out waiting for submit button")
         else:
             element.click()       # Element found!
-
-        # Verify that the new user has an Account page now
-        try: self.assertEqual('Sauce Labs | Account', driver.title)
-        except AssertionError as e: self.verificationErrors.append(str(e))
-    
-    def is_element_present(self, how, what):
-        try: self.driver.find_element(by=how, value=what)
-        except NoSuchElementException, e: return False
-        return True
+            # Verify that the new user has an Account page now
+            try: self.assertEqual('Sauce Labs | Account', driver.title)
+            except AssertionError as e: self.verificationErrors.append(str(e))
     
     def tearDown(self):
         self.driver.quit()
