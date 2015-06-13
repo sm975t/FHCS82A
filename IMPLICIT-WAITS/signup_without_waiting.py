@@ -16,6 +16,8 @@ locators = {
     'password' : 'password',   
     'password_confirm' : 'password_confirm',   
 # The 'x' in the button locator below was deliberately added in order to 'break' the locator.
+# This simulates the situation in which an element is added to the page by JavaScript following
+# some user action.
     'submit_button' : 'submit-buttonx',     
 }
 
@@ -67,11 +69,6 @@ class Signup(unittest.TestCase):
         # Verify that the new user has an Account page now
         try: self.assertEqual('Sauce Labs | Account', driver.title)
         except AssertionError as e: self.verificationErrors.append(str(e))
-    
-    def is_element_present(self, how, what):
-        try: self.driver.find_element(by=how, value=what)
-        except NoSuchElementException, e: return False
-        return True
     
     def tearDown(self):
         self.driver.quit()
