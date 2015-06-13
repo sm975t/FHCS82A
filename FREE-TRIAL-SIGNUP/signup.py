@@ -62,11 +62,6 @@ class Signup(unittest.TestCase):
         try: self.assertEqual('Sauce Labs | Account', driver.title)
         except AssertionError as e: self.verificationErrors.append(str(e))
     
-    def is_element_present(self, how, what):
-        try: self.driver.find_element(by=how, value=what)
-        except NoSuchElementException, e: return False
-        return True
-    
     def tearDown(self):
         self.driver.quit()
         self.assertEqual([], self.verificationErrors)
